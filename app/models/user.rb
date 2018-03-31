@@ -1,13 +1,24 @@
 class User < ApplicationRecord
-  enum role: [:user, :vip, :admin]
-  after_initialize :set_default_role, :if => :new_record?
+  MATRICULA_REGEXP = /\d{8}/
+  private_constant :MATRICULA_REGEXP
 
-  def set_default_role
-    self.role ||= :user
+  devise :omniauthable, omniauth_providers: [:azure_oauth2]
+
+  enum role: [:student, :teacher, :administrator]
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.email = auth.info.email
+      user.role = default_role(user)
+    end
   end
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  def self.default_role(user)
+    username = user.email.split('@').first
+    username =~ MATRICULA_REGEXP ? :student : :teacher
+  end
+
+  private_class_method :default_role
 end
