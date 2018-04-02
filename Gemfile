@@ -25,6 +25,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap', '~> 4.0.0'
 gem 'devise'
+gem 'omniauth-azure-oauth2'
 gem 'devise-i18n'
 gem 'jquery-rails'
 gem 'pg', '~> 0.18'
@@ -45,6 +46,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry-rails'
+  gem 'pry-byebug'
   gem 'pry-rescue'
   gem 'rspec-rails'
 end
