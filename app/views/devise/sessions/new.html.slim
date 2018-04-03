@@ -1,2 +1,9 @@
-div.authform
-  = link_to 'Inicia sesion con Websise', user_azure_oauth2_omniauth_authorize_path
+.container-fluid.h-100
+  .row.justify-content-center.align-items-center.h-100
+    .col.col-sm-6.col-md-6.col-lg-4.col-xl-3
+      = link_to user_azure_oauth2_omniauth_authorize_path
+        .card.text-center
+          .card-body
+            = image_tag 'logo-sin-texto.png', class: 'card-img-top'
+          .card-footer
+            | Inicia sesion con correo estudiantil.

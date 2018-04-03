@@ -25,5 +25,6 @@ module Isc434
     config.session_store :cookie_store, key: '_interslice_session'
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore, config.session_options
+    config.autoload_paths += %W(#{config.root}/lib)
   end
 end

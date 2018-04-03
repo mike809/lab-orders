@@ -14,4 +14,8 @@ Devise.setup do |config|
                   client_id: ENV['AZURE_CLIENT_ID'],
                   client_secret: ENV['AZURE_CLIENT_SECRET'],
                   tenant_id: ENV['AZURE_TENANT_ID']
+
+  config.warden do |manager|
+    manager.failure_app = CustomAuthenticationFailure
+  end
 end

@@ -1,11 +1,15 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:edit, :update]
+  before_action :authenticate_user!
+  before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   def index
     @orders = Order.all
   end
 
-  # GET /orders/1/edit
+  def new
+    @order = Order.new
+  end
+
   def edit
   end
 
@@ -45,13 +49,12 @@ class OrdersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order
-      @order = Order.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def order_params
-      params.fetch(:order, {})
-    end
+  def set_order
+    @order = Order.find(params[:id])
+  end
+
+  def order_params
+    params.fetch(:order, {})
+  end
 end
