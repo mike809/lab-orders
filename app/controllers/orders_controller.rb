@@ -9,10 +9,15 @@ class OrdersController < ApplicationController
     @order = Order.new
   end
 
+  def show
+    @order = Order.find(params[:id])
+    render layout: 'receipt'
+  end
+
   def create
     @order = Order.new(order_params)
     if @order.save
-      redirect_to orders_url
+      redirect_to order_url(@order)
     else
       render :new
     end

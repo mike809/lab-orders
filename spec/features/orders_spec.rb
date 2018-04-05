@@ -27,9 +27,9 @@ RSpec.feature "Orders", type: :feature do
     select('Patient Pucmm', from: 'order_patient_id')
 
     click_button('Crear orden')
-    expect(page.current_path).to eq orders_path
     expect(page).to have_text 'Teacher Pucmm'
     expect(page).to have_text 'Patient Pucmm'
     expect(page).to have_text 'Student Pucmm'
+    expect(page.current_path).to eq order_path(Order.last)
   end
 end
