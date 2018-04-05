@@ -1,6 +1,4 @@
 Devise.setup do |config|
-  config.mailer_sender = 'no-reply@' + Rails.application.secrets.domain_name
-
   require 'devise/orm/active_record'
 
   config.skip_session_storage = [:http_auth]
