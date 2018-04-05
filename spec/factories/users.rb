@@ -4,19 +4,19 @@ FactoryBot.define do
     username { Faker::Internet.user_name }
     full_name { Faker::Name.name }
 
-    trait :student do
+    factory :student do
       role :student
     end
 
-    trait :teacher do
+    factory :teacher do
       role :teacher
     end
 
-    trait :patient do
+    factory :patient do
       role :patient
     end
 
-    trait :administrator do
+    factory :administrator do
       role :administrator
     end
   end

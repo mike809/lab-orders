@@ -15,3 +15,10 @@
 //= require rails-ujs
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(document).ready(function(){
+  $('tr[data-href]').click(function(){
+    var url = $(this).data('href');
+    window.open(url, '_blank');
+  });
+});

@@ -2,11 +2,18 @@
  *= require rails_bootstrap_forms
  *= require_tree .
  *= require_self
- */
+*/
 
- @import 'bootstrap';
+@import 'bootstrap';
 
+html, body, body > .container {
+  height: 100%;
+}
 
- html, body, body > .container {
-   height: 100%;
- }
+table {
+  &.table-hover {
+    tr:hover {
+      background: #79BAFF;
+    }
+  }
+}

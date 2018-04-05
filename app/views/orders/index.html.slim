@@ -11,7 +11,7 @@ table.table.table-bordered.table-striped.table-hover
 
   tbody
     - @orders.each do |order|
-      tr
+      tr data-href="#{order_url(order)}"
         td = order.id
         td = order.patient.full_name
         td = order.teacher.full_name
