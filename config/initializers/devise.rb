@@ -9,9 +9,12 @@ Devise.setup do |config|
   config.sign_out_via = :delete
 
   config.parent_controller = 'ActionController::Base'
-
   config.omniauth :azure_oauth2,
                   client_id: ENV['AZURE_CLIENT_ID'],
                   client_secret: ENV['AZURE_CLIENT_SECRET'],
                   tenant_id: ENV['AZURE_TENANT_ID']
+
+  config.warden do |manager|
+    manager.failure_app = CustomAuthenticationFailure
+  end
 end

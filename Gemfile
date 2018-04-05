@@ -8,7 +8,6 @@ gem 'rails', '~> 5.1.5'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 group :development, :test do
@@ -24,6 +23,7 @@ group :development do
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap', '~> 4.0.0'
+gem 'bootstrap_form'
 gem 'devise'
 gem 'omniauth-azure-oauth2'
 gem 'devise-i18n'
@@ -51,6 +51,7 @@ group :development, :test do
   gem 'rspec-rails'
 end
 group :test do
+  gem 'poltergeist'
   gem 'database_cleaner'
   gem 'launchy'
 end
