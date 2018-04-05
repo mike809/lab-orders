@@ -1,8 +1,40 @@
 describe User do
+  describe 'validations' do
+    let(:params) { {} }
+    subject { FactoryBot.build(:user, params) }
+
+    context 'when all the fields are present' do
+      it 'is valid' do
+        expect(subject).to be_valid
+      end
+    end
+
+    context 'when the username is missing' do
+      let(:params) { { username: nil } }
+      it 'is not valid' do
+        expect(subject).not_to be_valid
+      end
+    end
+
+    context 'when the email is missing' do
+      let(:params) { { email: nil } }
+      it 'is not valid' do
+        expect(subject).not_to be_valid
+      end
+    end
+
+    context 'when the full_name is missing' do
+      let(:params) { { full_name: nil } }
+      it 'is not valid' do
+        expect(subject).not_to be_valid
+      end
+    end
+  end
+
   describe '.from_omniauth' do
     let(:auth) do
       OpenStruct.new(
-        info: OpenStruct.new(email: email),
+        info: OpenStruct.new(email: email, name: 'Jose Gomez'),
         provider: 'Azure',
         uid: '1234'
       )

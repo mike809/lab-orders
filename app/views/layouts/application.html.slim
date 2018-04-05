@@ -18,4 +18,5 @@ html
           li.nav-item.active
             - if user_signed_in?
               = link_to 'Cerrar sesión', logout_path, class: 'nav-link', method: :post
-    == yield
+    .container
+      == yield

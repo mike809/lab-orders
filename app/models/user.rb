@@ -4,19 +4,31 @@ class User < ApplicationRecord
 
   devise :omniauthable, omniauth_providers: [:azure_oauth2]
 
-  enum role: [:student, :teacher, :administrator]
+  enum role: {
+    student: 'student',
+    teacher: 'teacher',
+    administrator: 'administrator',
+    patient: 'patient'
+  }
+
+  validates :username, :email, :full_name, presence: :true
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    where(provider: auth.provider, uid: auth.uid).first_or_create! do |user|
       user.provider = auth.provider
       user.uid = auth.uid
       user.email = auth.info.email
-      user.role = default_role(user)
+      user.full_name = auth.info.name
+      user.username = username(user.email)
+      user.role = default_role(user.username)
     end
   end
 
-  def self.default_role(user)
-    username = user.email.split('@').first
+  def self.username(email)
+    email.split('@').first
+  end
+
+  def self.default_role(username)
     username =~ MATRICULA_REGEXP ? :student : :teacher
   end
 
