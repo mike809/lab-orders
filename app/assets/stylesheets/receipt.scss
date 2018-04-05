@@ -1,0 +1,31 @@
+@media print {
+  -webkit-print-color-adjust: exact;
+}
+
+@media print, screen {
+  .container {
+    margin: 4em;
+    .centered-column {
+      margin: 2em 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    table {
+      &.barby-barcode {
+        border-spacing: 0;
+        tr.barby-row {
+          td.barby-cell {
+            width: 3px;
+            height: 100px;
+            &.barby-cell.on {
+              background: #000;
+              -webkit-print-color-adjust:exact;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+.centered-column = raw @order.barcode
+
+h2 Orden de Protesis
+p Nombre del paciente:
+= @order.patient.full_name
+p Nombre del doctor
+= @order.teacher.full_name
+p Nombre del estudiante
+= @order.student.full_name
