@@ -32,7 +32,6 @@ gem 'pg', '~> 0.18'
 gem 'pundit'
 gem 'slim-rails'
 gem 'barby'
-gem 'chunky_png'
 group :development do
   gem 'guard-bundler'
   gem 'guard-rails'
