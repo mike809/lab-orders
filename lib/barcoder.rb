@@ -1,5 +1,5 @@
 require 'barby'
-require 'barby/barcode/ean_13'
+require 'barby/barcode/code_39'
 require 'barby/outputter/html_outputter'
 
 class Barcoder
@@ -8,7 +8,7 @@ class Barcoder
   delegate :to_html, to: :html_outputter
 
   def initialize(raw_data)
-    @raw_data = raw_data
+    @raw_data = raw_data.to_s
   end
 
   private
@@ -18,10 +18,6 @@ class Barcoder
   end
 
   def barcode
-    @barcode ||= Barby::EAN13.new(formatted_data)
-  end
-
-  def formatted_data
-    raw_data.to_s.rjust(12, '0')
+    @barcode ||= Barby::Code39.new(raw_data)
   end
 end
