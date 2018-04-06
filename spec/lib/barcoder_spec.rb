@@ -16,17 +16,10 @@ describe Barcoder do
         expect { subject }.not_to raise_error
       end
     end
-
-    context 'when the data is not 12 digits' do
-      let(:param) { 12 }
-      it 'initializes correctly' do
-        expect { subject }.not_to raise_error
-      end
-    end
   end
 
   describe '#to_html' do
-    let(:param) { '123456789012' }
+    let(:param) { 123456789012 }
 
     it 'returns a string without error' do
       expect(subject.to_html). to be_a String
