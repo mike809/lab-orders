@@ -1,6 +1,7 @@
 Devise.setup do |config|
   require 'devise/orm/active_record'
 
+  config.secret_key = ENV['DEVISE_SECRET_KEY'] if Rails.env.production?
   config.skip_session_storage = [:http_auth]
   config.stretches = Rails.env.test? ? 1 : 11
   config.expire_all_remember_me_on_sign_out = true
