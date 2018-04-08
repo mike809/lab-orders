@@ -8,5 +8,9 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-primary.justify-content-between
     #navbarNavAltMarkup.collapse.navbar-collapse
       .navbar-nav.ml-auto
         - if user_signed_in?
-          a.btn.btn-outline-light.mx-1 href='' data-target='#barcode-scanner-modal' data-toggle='modal' Escanear orden
+          - if current_user.admin?
+            = link_to 'Listado de usuarios', admin_users_path, class: 'btn btn-outline-light mx-1'
+            = link_to 'Crear usuario', new_admin_user_path, class: 'btn btn-outline-light mx-1', remote: true
+            = link_to 'Crear orden', new_order_path, class: 'btn btn-outline-light mx-1'
+            a.btn.btn-outline-light.mx-1 href='' data-target='#barcode-scanner-modal' data-toggle='modal' Escanear orden
           = link_to 'Cerrar sesión', logout_path, class: 'btn btn-outline-light mx-1', method: :post

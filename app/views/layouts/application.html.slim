@@ -10,9 +10,9 @@ html
     == csrf_meta_tags
   body
     header
-      = render partial: 'layouts/navbar'
+      == render partial: 'layouts/navbar'
 
     .container
       == yield
     .footer
-      = render partial: 'layouts/barcode_scanner_modal'
+      == render partial: 'layouts/footer'
