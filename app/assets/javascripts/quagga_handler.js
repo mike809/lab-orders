@@ -1,6 +1,5 @@
 class QuaggaHandler {
   constructor() {
-    this.resultCount = 0;
     this.initializeCodesCount();
     this.loadQuagga();
   }
@@ -8,27 +7,35 @@ class QuaggaHandler {
   initializeCodesCount() {
     const handler = {
       get(target, name) {
+        if(name == 'length') { return this.size || 0 }
         return Object.prototype.hasOwnProperty.call(target, name) ? target[name] : 0;
       },
+      set(target, name, value) {
+        if(this.size === undefined) {
+          this.size = 1;
+        } else {
+          this.size += 1;
+        }
+        target[name] = value;
+        return true;
+      }
     };
     this.codesCount = new Proxy({}, handler);
   }
 
-  getHighestOcurrenceCode() {
-    return Object.keys(this.codesCount).reduce(function (a, b) {
-      return (this.codesCount[a] > this.codesCount[b]) ? a : b;
+  getHighestOcurrenceCode(codesCount) {
+    return Object.keys(codesCount).reduce(function (a, b) {
+      return (codesCount[a] > codesCount[b]) ? a : b;
     });
   }
 
   handleBarcode(result) {
     const lastCode = result.codeResult.code;
     this.codesCount[lastCode] += 1;
-    this.resultCount += 1;
 
-    if (this.resultCount > 20) {
-      const code = this.getHighestOcurrenceCode();
+    if (this.codesCount.length > 20) {
+      const code = this.getHighestOcurrenceCode(this.codesCount);
       this.initializeCodesCount();
-      this.resultCount = 0;
 
       Quagga.stop();
 
