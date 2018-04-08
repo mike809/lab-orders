@@ -7,6 +7,6 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-primary.justify-content-between
       span.navbar-toggler-icon
     #navbarNavAltMarkup.collapse.navbar-collapse
       .navbar-nav.ml-auto
-        a.btn.btn-outline-light.mx-1 href='' data-target='#barcode-scanner-modal' data-toggle='modal' Escanear orden
         - if user_signed_in?
+          a.btn.btn-outline-light.mx-1 href='' data-target='#barcode-scanner-modal' data-toggle='modal' Escanear orden
           = link_to 'Cerrar sesión', logout_path, class: 'btn btn-outline-light mx-1', method: :post
