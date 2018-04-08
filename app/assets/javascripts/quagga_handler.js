@@ -40,7 +40,7 @@ class QuaggaHandler {
       Quagga.stop();
 
       $.ajax({
-        type: 'GET',
+        type: 'PUT',
         url: `/orders/${code}`
       });
     }

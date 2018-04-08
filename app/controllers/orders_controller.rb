@@ -23,6 +23,17 @@ class OrdersController < ApplicationController
     end
   end
 
+  def update
+    @order = Order.find(params[:id])
+
+    respond_to do |format|
+      format.js {
+        @order.transition!
+        redirect_to order_path(@order)
+      }
+    end
+  end
+
   private
 
   def order_params

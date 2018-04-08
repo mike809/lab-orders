@@ -6,9 +6,11 @@ class Order < ApplicationRecord
   validate :teacher_has_correct_role, :student_has_correct_role, :patient_has_correct_role
 
   def barcode
-    @barcode ||= begin
-      Barcoder.new(id).to_html
-    end
+    @barcode ||= Barcoder.new(id).to_html
+  end
+
+  def transition!
+    UserNotifierMailer.send_order_received_email(self).deliver
   end
 
   private
