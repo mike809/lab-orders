@@ -42,7 +42,7 @@ class User < ApplicationRecord
 
   def set_generated_username
     unless self.username.present?
-      self.username = UniqueUsernameGenerator.from_fullname(full_name)
+      self.username = UniqueUsernameGenerator.for_user(self)
     end
   end
 
