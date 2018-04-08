@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
+  subject { FactoryBot.create(:order) }
+
   describe '.validations' do
     let(:teacher) { FactoryBot.create(:teacher) }
     let(:student) { FactoryBot.create(:student) }
@@ -38,8 +40,24 @@ RSpec.describe Order, type: :model do
     end
   end
 
+  describe '#transition!' do
+    context 'when we transition an order' do
+      before do
+        subject.transition!
+      end
+
+      it 'sends an email' do
+        expect(email_count).to eq(1)
+      end
+
+      it 'has the correct subject content' do
+        expect(last_email.subject).to eq('Orden de protesis recibida.')
+        expect(last_email.body).to include('Nombre del paciente:')
+      end
+    end
+  end
+
   describe '#barcode' do
-    subject { FactoryBot.create(:order) }
     let(:barcoder) { instance_double('Barcoder') }
 
     before do
