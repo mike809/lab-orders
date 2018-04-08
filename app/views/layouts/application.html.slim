@@ -10,13 +10,9 @@ html
     == csrf_meta_tags
   body
     header
-      nav.navbar.navbar-dark.bg-primary
-        = link_to root_url, class: 'navbar-brand' do
-          = image_tag 'logo.png', size: '225x74'
+      = render partial: 'layouts/navbar'
 
-        ul.navbar-nav
-          li.nav-item.active
-            - if user_signed_in?
-              = link_to 'Cerrar sesión', logout_path, class: 'nav-link', method: :post
     .container
       == yield
+    .footer
+      = render partial: 'layouts/barcode_scanner_modal'

@@ -50,6 +50,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rescue'
   gem 'rspec-rails'
+  gem 'teaspoon-jasmine'
 end
 group :test do
   gem 'poltergeist'
