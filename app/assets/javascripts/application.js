@@ -2,15 +2,16 @@
 //= require popper
 //= require rails-ujs
 //= require bootstrap-sprockets
+//= require turbolinks
 //= require quagga.min
 //= require quagga_handler
 //= require_tree .
 
-$(document).ready(function(){
-  $('tr[data-href]').click(function(){
-    var url = $(this).data('href');
+$(document).on('turbolinks:load', () => {
+  $('tr[data-href]').click((event) => {
+    var url = $(event.currentTarget).data('href');
     window.open(url, '_blank');
   });
-});
 
-$(document).ready(() => { new QuaggaHandler(); });
+  new QuaggaHandler();
+});
