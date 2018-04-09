@@ -1,6 +1,6 @@
 class Admin::UsersController < AdminsController
   def index
-    @users = User.all
+    @users = User.order(created_at: :desc)
   end
 
   def new
