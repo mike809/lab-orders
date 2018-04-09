@@ -7,6 +7,20 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-primary.justify-content-between
       span.navbar-toggler-icon
     #navbarNavAltMarkup.collapse.navbar-collapse
       .navbar-nav.ml-auto
+        ul.navbar-nav.mr-auto
         - if user_signed_in?
-          a.btn.btn-outline-light.mx-1 href='' data-target='#barcode-scanner-modal' data-toggle='modal' Escanear orden
-          = link_to 'Cerrar sesión', logout_path, class: 'btn btn-outline-light mx-1', method: :post
+          - if current_user.admin?
+            li.nav-item.dropdown
+              a#navbarDropdown.btn.btn-outline-light.mx-1.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+                | Usuarios
+              .dropdown-menu aria-labelledby="navbarDropdown"
+                = link_to 'Listado de usuarios', admin_users_path, class: 'dropdown-item border-bottom'
+                = link_to 'Crear usuario', new_admin_user_path, class: 'dropdown-item', remote: true
+            li.nav-item.dropdown
+              a#navbarDropdown.btn.btn-outline-light.mx-1.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+                | Ordenes
+              .dropdown-menu aria-labelledby="navbarDropdown"
+                = link_to 'Listado de ordenes', orders_path, class: 'dropdown-item border-bottom'
+                = link_to 'Crear orden', new_order_path, class: 'dropdown-item border-bottom'
+                a.dropdown-item href='' data-target='#barcode-scanner-modal' data-toggle='modal' Escanear orden
+          li = link_to 'Cerrar sesión', logout_path, class: 'btn btn-outline-light mx-1', method: :post

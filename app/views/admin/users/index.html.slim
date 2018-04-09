@@ -1,0 +1,18 @@
+h2 Listado de usuarios
+.my-2 = link_to 'Crear usuario', new_admin_user_path, class: 'btn btn-outline-light mx-1', remote: true
+
+table.table.table-bordered.table-striped
+  thead.thead-light
+    tr
+      th Nombre completo
+      th Nombre de usuario
+      th Correo electronico
+      th Tipo de usuario
+
+  tbody
+    - @users.each do |user|
+      tr
+        td = user.full_name
+        td = user.username
+        td = user.email
+        td = I18n.t("activerecord.enums.user.user_roles.#{user.role}")
