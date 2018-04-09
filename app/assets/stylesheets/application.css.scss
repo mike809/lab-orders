@@ -12,7 +12,7 @@ html, body, body > .container {
 
 table {
   &.table-hover {
-    tr:hover {
+    tr[data-href]:hover {
       background: #79BAFF;
     }
   }
