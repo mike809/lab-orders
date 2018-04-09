@@ -14,9 +14,9 @@ class User < ApplicationRecord
   before_validation :set_generated_username, unless: ->(user) { user.username.present? }
   before_validation :set_generated_email, unless: ->(user) { user.email.present? }
 
-  validates :username, :email, :full_name, presence: :true
+  validates :username, :email, :full_name, presence: true
 
-  alias :admin? :administrator?
+  alias admin? administrator?
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create! do |user|
       user.provider = auth.provider

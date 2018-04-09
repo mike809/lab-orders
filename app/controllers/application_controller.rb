@@ -5,9 +5,9 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(user)
     case user.role
-    when :admin
+    when :administrator
       users_path
-    when :student
+    else
       orders_path
     end
   end
