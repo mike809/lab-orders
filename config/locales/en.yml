@@ -4,6 +4,8 @@ en:
       models:
         user:
           attributes:
+            full_name:
+              blank: Nombre completo no puede estar en blanco
             username:
               blank: Nombre de usuario no puede estar en blanco
             email:
