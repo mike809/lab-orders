@@ -6,11 +6,11 @@
         - @order.errors.full_messages.each do |message|
           li = message
   .row
-    .col-4
+    .col-md-4
       = f.collection_select :patient_id, User.patient, :id, :full_name
-    .col-4
+    .col-md-4
       = f.collection_select :student_id, User.student, :id, :full_name
-    .col-4
+    .col-md-4
       = f.collection_select :teacher_id, User.teacher, :id, :full_name
   .actions
     = f.submit 'Crear orden', class: 'btn btn-primary'

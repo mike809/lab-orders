@@ -13,6 +13,10 @@ en:
     attributes:
       user:
         full_name: Nombre completo
+      order:
+        patient_id: Paciente
+        student_id: Estudiante
+        teacher_id: Docente de planta
     enums:
       user:
         user_roles:

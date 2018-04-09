@@ -32,3 +32,12 @@ table {
     }
   }
 }
+
+@media (max-width: 767px) {
+  body > .container {
+    overflow: hidden;
+    & > * {
+      overflow: visible;
+    }
+  }
+}
