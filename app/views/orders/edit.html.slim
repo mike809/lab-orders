@@ -1,0 +1,5 @@
+h1 Actualizar orden
+== render 'form', order: @order, disabled: true
+
+.my-3
+  = button_to 'Recibir orden', { action: :update }, class: 'btn btn-primary', method: :put

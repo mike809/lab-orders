@@ -60,16 +60,12 @@ describe('Quagga Handler', () => {
         }
 
         spyOn(Quagga, 'stop');
-        spyOn($, 'ajax');
+        spyOn(window.location.href, 'set');
         quagga_handler.handleBarcode(result);
       })
 
       it('stops quagga', () => {
         expect(Quagga.stop.calls.count()).toBe(1);
-      });
-
-      it('makes a request to the server on the highest ocurrent code', () => {
-        expect($.ajax.calls.mostRecent().args[0]["url"]).toBe(`/orders/${highestOcurrenceCode}`);
       });
     });
   });

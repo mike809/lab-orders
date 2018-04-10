@@ -38,11 +38,7 @@ class QuaggaHandler {
       this.initializeCodesCount();
 
       Quagga.stop();
-
-      $.ajax({
-        type: 'PUT',
-        url: `/orders/${code}`
-      });
+      window.location.href = `/orders/${code}/edit`
     }
   }
 

@@ -11,6 +11,6 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :new, :create]
   end
 
-  resources :orders
+  resources :orders, only: [:index, :new, :show, :create, :edit, :update]
   root 'orders#index'
 end

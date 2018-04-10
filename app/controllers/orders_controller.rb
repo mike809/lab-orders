@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @orders = Order.all
+    @order_presenters = Order.all.map { |order| OrderPresenter.new(order, view_context) }
   end
 
   def new
@@ -23,15 +23,15 @@ class OrdersController < ApplicationController
     end
   end
 
+
+  def edit
+    @order = OrderPresenter.new(Order.find(params[:id]), view_context)
+  end
+
   def update
     @order = Order.find(params[:id])
-
-    respond_to do |format|
-      format.js {
-        @order.transition!
-        redirect_to order_path(@order)
-      }
-    end
+    @order.transition!
+    redirect_to order_path(@order)
   end
 
   private
