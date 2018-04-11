@@ -1,4 +1,3 @@
-
 import Quagga from 'quagga';
 
 class QuaggaHandler {

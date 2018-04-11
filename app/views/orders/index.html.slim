@@ -12,7 +12,7 @@ table.table.table-bordered.table-striped.table-hover
 
   tbody
     - @order_presenters.each do |order_presenter|
-      tr data-href="#{order_url(order_presenter)}"
+      tr data-href="#{edit_order_url(order_presenter)}"
         td = order_presenter.id
         td = order_presenter.patient.full_name
         td = order_presenter.teacher.full_name
