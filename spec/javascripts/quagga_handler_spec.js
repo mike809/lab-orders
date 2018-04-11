@@ -47,15 +47,9 @@ describe('Quagga Handler', () => {
       }
     };
 
-    let windowMock = {
-      location: {
-        href: ''
-      }
-    }
-
     it('adds the code to the codes count hash map', () => {
       expect(quagga_handler.codesCount.size).toBe(0);
-      quagga_handler.handleBarcode(windowMock, result);
+      quagga_handler.handleBarcode(result);
       expect(quagga_handler.codesCount.size).toBe(1);
     });
 
@@ -70,11 +64,12 @@ describe('Quagga Handler', () => {
         }
 
         spyOn(Quagga, 'stop');
-        quagga_handler.handleBarcode(windowMock, result);
+        spyOn(quagga_handler, 'goToUrl')
+        quagga_handler.handleBarcode(result);
       })
 
-      it('changes the window location href', () => {
-        expect(windowMock.location.href).toBe('/orders/CoDe/edit')
+      it('goes to the edit url', () => {
+        expect(quagga_handler.goToUrl).toHaveBeenCalledWith('/orders/CoDe/edit')
       });
 
       it('stops quagga', () => {

@@ -30,7 +30,7 @@ class QuaggaHandler {
     };
   }
 
-  handleBarcode(_window, result) {
+  handleBarcode(result) {
     const lastCode = result.codeResult.code;
     this.codesCount.increment(lastCode);
 
@@ -39,8 +39,12 @@ class QuaggaHandler {
       this.initializeCodesCount();
 
       Quagga.stop();
-      _window.location.href = `/orders/${code}/edit`
+      this.goToUrl(`/orders/${code}/edit`);
     }
+  }
+
+  goToUrl(url) {
+    window.location.href = url;
   }
 
   haveAccessToUserMedia() {
@@ -50,7 +54,7 @@ class QuaggaHandler {
   bindToModal() {
     $('#barcode-scanner-modal').on('show.bs.modal', () => {
       if (Quagga.initialized == undefined) {
-        Quagga.onDetected(this.handleBarcode.bind(this, window));
+        Quagga.onDetected(this.handleBarcode.bind(this));
       }
 
       Quagga.init({
