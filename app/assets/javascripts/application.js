@@ -3,9 +3,9 @@
 //= require rails-ujs
 //= require bootstrap-sprockets
 //= require turbolinks
-//= require quagga.min
-//= require quagga_handler
 //= require_tree .
+
+import QuaggaHandler from 'quagga_handler'
 
 $(document).on('turbolinks:load', () => {
   $('tr[data-href]').click((event) => {

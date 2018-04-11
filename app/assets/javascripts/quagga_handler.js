@@ -1,3 +1,6 @@
+
+import Quagga from 'quagga';
+
 class QuaggaHandler {
   constructor() {
     this.initializeCodesCount();
@@ -5,40 +8,38 @@ class QuaggaHandler {
   }
 
   initializeCodesCount() {
-    const handler = {
-      get(target, name) {
-        if(name == 'length') { return this.size || 0 }
-        return Object.prototype.hasOwnProperty.call(target, name) ? target[name] : 0;
+    this.codesCount = {
+      store: {},
+      size: 0,
+
+      increment(value) {
+        this.store[value] = this.get(value) + 1;
+        this.size += 1;
       },
-      set(target, name, value) {
-        if(this.size === undefined) {
-          this.size = 1;
-        } else {
-          this.size += 1;
-        }
-        target[name] = value;
-        return true;
+
+      get(value) {
+        return this.store[value] || 0;
+      },
+
+      getHighestOcurrenceCode() {
+        const codes = this.store;
+        return Object.keys(codes).reduce(function (a, b) {
+          return (codes[a] > codes[b]) ? a : b;
+        });
       }
     };
-    this.codesCount = new Proxy({}, handler);
   }
 
-  getHighestOcurrenceCode(codesCount) {
-    return Object.keys(codesCount).reduce(function (a, b) {
-      return (codesCount[a] > codesCount[b]) ? a : b;
-    });
-  }
-
-  handleBarcode(result) {
+  handleBarcode(_window, result) {
     const lastCode = result.codeResult.code;
-    this.codesCount[lastCode] += 1;
+    this.codesCount.increment(lastCode);
 
-    if (this.codesCount.length > 20) {
-      const code = this.getHighestOcurrenceCode(this.codesCount);
+    if (this.codesCount.size > 20) {
+      const code = this.codesCount.getHighestOcurrenceCode();
       this.initializeCodesCount();
 
       Quagga.stop();
-      window.location.href = `/orders/${code}/edit`
+      _window.location.href = `/orders/${code}/edit`
     }
   }
 
@@ -49,7 +50,7 @@ class QuaggaHandler {
   bindToModal() {
     $('#barcode-scanner-modal').on('show.bs.modal', () => {
       if (Quagga.initialized == undefined) {
-        Quagga.onDetected(this.handleBarcode.bind(this));
+        Quagga.onDetected(this.handleBarcode.bind(this, window));
       }
 
       Quagga.init({
@@ -83,3 +84,5 @@ class QuaggaHandler {
     }
   }
 }
+
+export default QuaggaHandler;

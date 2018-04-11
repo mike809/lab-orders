@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   get 'azure_oauth2/callback'
 
   devise_scope :user do
