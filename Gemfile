@@ -33,6 +33,7 @@ gem 'pg', '~> 0.18'
 gem 'pundit'
 gem 'slim-rails'
 gem 'barby'
+gem "browserify-rails"
 group :development do
   gem 'guard-bundler'
   gem 'guard-rails'
@@ -51,7 +52,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rescue'
   gem 'rspec-rails'
-  gem 'teaspoon-jasmine'
+  gem 'jasmine-rails'
 end
 group :test do
   gem 'poltergeist'
