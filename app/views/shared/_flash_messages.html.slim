@@ -1,0 +1,4 @@
+- unless flash.empty?
+  - flash.each do |key,value|
+    .col.my-3
+      = content_tag(:div, value, class: "alert alert-#{key}")

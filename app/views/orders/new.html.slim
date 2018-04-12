@@ -1,2 +1,6 @@
 h1 Nueva orden
-== render 'form'
+
+= bootstrap_form_for @order do |form|
+  == render 'form_fields', form: form, order: @order, disabled: false
+  .actions
+    = form.submit 'Crear orden', class: 'btn btn-primary'

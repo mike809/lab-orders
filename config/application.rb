@@ -28,5 +28,13 @@ module Isc434
     config.autoload_paths << Rails.root.join('lib')
     config.eager_load_paths << Rails.root.join('lib')
     config.active_record.schema_format = :sql
+
+    config.browserify_rails.commandline_options = '-t [ babelify --presets [ env ] ]'
+    config.browserify_rails.force = true
+    unless Rails.env.production?
+      config.browserify_rails.paths << lambda { |p|
+        p.start_with?(Rails.root.join('spec/javascripts').to_s)
+      }
+    end
   end
 end

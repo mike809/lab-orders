@@ -11,6 +11,8 @@ class User < ApplicationRecord
     patient: 'patient'
   }
 
+  has_many :student_orders, foreign_key: 'student_id', class_name: 'Order'
+
   before_validation :set_generated_username, unless: ->(user) { user.username.present? }
   before_validation :set_generated_email, unless: ->(user) { user.email.present? }
 
@@ -38,6 +40,10 @@ class User < ApplicationRecord
   end
 
   private_class_method :default_role
+
+  def pending_balance
+    student_orders.with_pending_balance.sum(:balance)
+  end
 
   private
 

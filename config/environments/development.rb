@@ -41,7 +41,7 @@ Rails.application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
-  config.action_controller.asset_host = 'localhost:3000'
+  # config.action_controller.asset_host = 'localhost:3000'
   config.action_mailer.asset_host = 'localhost:3000'
 
   config.action_mailer.smtp_settings = {
@@ -51,9 +51,10 @@ Rails.application.configure do
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.raise_delivery_errors = false
   # Send email in development mode?
 
+  config.action_controller.action_on_unpermitted_parameters = :raise
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 

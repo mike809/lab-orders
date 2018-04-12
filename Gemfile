@@ -9,7 +9,6 @@ gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'turbolinks', '~> 5'
-gem 'sprockets-rails', '2.3.3'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
@@ -33,6 +32,7 @@ gem 'pg', '~> 0.18'
 gem 'pundit'
 gem 'slim-rails'
 gem 'barby'
+gem "browserify-rails"
 group :development do
   gem 'guard-bundler'
   gem 'guard-rails'
@@ -51,7 +51,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rescue'
   gem 'rspec-rails'
-  gem 'teaspoon-jasmine'
+  gem 'jasmine-rails'
 end
 group :test do
   gem 'poltergeist'

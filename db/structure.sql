@@ -60,7 +60,8 @@ CREATE TABLE public.orders (
     teacher_id bigint,
     description character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    balance numeric(8,2) DEFAULT 0
 );
 
 
@@ -235,6 +236,7 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20180330224829'),
-('20180402235317');
+('20180402235317'),
+('20180409222952');
 
 
