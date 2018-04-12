@@ -64,12 +64,12 @@ describe('Quagga Handler', () => {
         }
 
         spyOn(Quagga, 'stop');
-        spyOn(quagga_handler, 'goToUrl')
+        spyOn(Turbolinks, 'visit');
         quagga_handler.handleBarcode(result);
       })
 
       it('goes to the edit url', () => {
-        expect(quagga_handler.goToUrl).toHaveBeenCalledWith('/orders/CoDe/edit')
+        expect(Turbolinks.visit).toHaveBeenCalledWith('/orders/CoDe/edit')
       });
 
       it('stops quagga', () => {

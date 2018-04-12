@@ -1,20 +1,23 @@
 h2 Listado de ordenes
 .my-2 = link_to 'Nueva Orden', new_order_path, class: 'btn btn-primary'
 
-table.table.table-bordered.table-striped.table-hover
-  thead.thead-light
-    tr
-      th Codigo de orden
-      th Paciente
-      th Docente
-      th Estudiante
-      th Balance Pediente
+.col-12
+  .row
+    .table-responsive
+      table.table.table-bordered.table-striped.table-hover
+        thead.thead-light
+          tr
+            th Codigo de orden
+            th Paciente
+            th Docente
+            th Estudiante
+            th Balance Pediente
 
-  tbody
-    - @order_presenters.each do |order_presenter|
-      tr data-href="#{edit_order_url(order_presenter)}"
-        td = order_presenter.id
-        td = order_presenter.patient.full_name
-        td = order_presenter.teacher.full_name
-        td = order_presenter.student.full_name
-        td = order_presenter.balance
+        tbody
+          - @order_presenters.each do |order_presenter|
+            tr data-href="#{edit_order_url(order_presenter)}"
+              td = order_presenter.id
+              td = order_presenter.patient.full_name
+              td = order_presenter.teacher.full_name
+              td = order_presenter.student.full_name
+              td = order_presenter.balance

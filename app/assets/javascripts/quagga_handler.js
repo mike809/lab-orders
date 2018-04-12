@@ -38,12 +38,8 @@ class QuaggaHandler {
       this.initializeCodesCount();
 
       Quagga.stop();
-      this.goToUrl(`/orders/${code}/edit`);
+      Turbolinks.visit(`/orders/${code}/edit`);
     }
-  }
-
-  goToUrl(url) {
-    window.location.href = url;
   }
 
   haveAccessToUserMedia() {

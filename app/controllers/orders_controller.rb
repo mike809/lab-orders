@@ -30,8 +30,12 @@ class OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    @order.transition!
-    redirect_to order_path(@order)
+    @order.transaction do
+      @order.transition!
+      flash.now[:info] = 'Orden Recibida'
+    end
+
+    render :edit
   end
 
   private

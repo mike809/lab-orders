@@ -1,0 +1,13 @@
+- if order.errors.any?
+  #error_explanation
+    h2 = "#{pluralize(order.errors.count, "error")} prohibited this order from being saved:"
+    ul
+      - order.errors.full_messages.each do |message|
+        li = message
+.row
+  .col-md-4
+    = form.collection_select :patient_id, User.patient, :id, :full_name, {}, disabled: disabled
+  .col-md-4
+    = form.collection_select :student_id, User.student, :id, :full_name, {}, disabled: disabled
+  .col-md-4
+    = form.collection_select :teacher_id, User.teacher, :id, :full_name, {}, disabled: disabled

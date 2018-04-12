@@ -10,9 +10,10 @@ html
     == csrf_meta_tags
   body
     header
-      == render partial: 'layouts/navbar'
+      == render partial: 'shared/navbar'
+      == render partial: 'shared/flash_messages'
 
     .container
       == yield
     .footer
-      == render partial: 'layouts/footer'
+      == render partial: 'shared/footer'
