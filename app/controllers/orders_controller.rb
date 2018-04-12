@@ -23,7 +23,6 @@ class OrdersController < ApplicationController
     end
   end
 
-
   def edit
     @order = OrderPresenter.new(Order.find(params[:id]), view_context)
   end
@@ -41,6 +40,6 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.fetch(:order, {}).permit(:student_id, :teacher_id, :patient_id)
+    params.require(:order).permit(:student_id, :teacher_id, :patient_id, :balance)
   end
 end

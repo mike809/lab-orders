@@ -28,12 +28,15 @@ RSpec.feature "Orders", js: true do
       select('Student Pucmm', from: 'order_student_id')
       select('Teacher Pucmm', from: 'order_teacher_id')
       select('Patient Pucmm', from: 'order_patient_id')
+      fill_in('Balance',	with: 5550)
 
       click_button('Crear orden')
       expect(page).to have_text 'Teacher Pucmm'
       expect(page).to have_text 'Patient Pucmm'
       expect(page).to have_text 'Student Pucmm'
+
       expect(page.current_path).to eq order_path(Order.last)
+      expect(Order.last.balance).to eq(5550)
     end
 
     scenario 'User receives an order' do
@@ -43,11 +46,12 @@ RSpec.feature "Orders", js: true do
       select('Student Pucmm', from: 'order_student_id')
       select('Teacher Pucmm', from: 'order_teacher_id')
       select('Patient Pucmm', from: 'order_patient_id')
+      fill_in('Balance',	with: 5550)
 
       click_button('Crear orden')
       visit orders_path
 
-      find('tr', text: 'Patient Pucmm Teacher Pucmm Student Pucmm').click
+      find('tr', text: 'Patient Pucmm Teacher Pucmm Student Pucmm RD$5,550').click
       expect(page.current_path).to eq edit_order_path(Order.last)
 
       click_on('Recibir orden')

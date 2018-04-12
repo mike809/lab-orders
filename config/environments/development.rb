@@ -54,6 +54,7 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
   # Send email in development mode?
 
+  config.action_controller.action_on_unpermitted_parameters = :raise
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 

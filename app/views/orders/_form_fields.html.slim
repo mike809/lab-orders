@@ -5,9 +5,11 @@
       - order.errors.full_messages.each do |message|
         li = message
 .row
-  .col-md-4
+  .col-md-3
     = form.collection_select :patient_id, User.patient, :id, :full_name, {}, disabled: disabled
-  .col-md-4
+  .col-md-3
     = form.collection_select :student_id, User.student, :id, :full_name, {}, disabled: disabled
-  .col-md-4
+  .col-md-3
     = form.collection_select :teacher_id, User.teacher, :id, :full_name, {}, disabled: disabled
+  .col-md-3
+    = form.text_field :balance, data: { autonumeric: true }, disabled: disabled
