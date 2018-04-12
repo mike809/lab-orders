@@ -33,6 +33,42 @@ describe User do
     end
   end
 
+  describe '#pending_balance' do
+    subject { FactoryBot.create(:student) }
+
+    context 'when the student has no orders' do
+      it 'returns 0' do
+        expect(subject.pending_balance).to eq 0
+      end
+    end
+
+    context 'when the student has orders' do
+      before do
+        FactoryBot.create(:order, student: subject, balance: balance)
+      end
+
+      context 'when the orders do not have some balance' do
+        let(:balance) { 0 }
+        it 'returns 0' do
+          expect(subject.pending_balance).to eq 0
+        end
+      end
+
+      context 'when the orders have some balance' do
+        let(:balance) { 500 }
+
+        before do
+          FactoryBot.create(:order, student: subject, balance: 1000)
+        end
+
+        it 'returns the total of all the pending orders' do
+          expect(subject.pending_balance).to eq 1500
+        end
+      end
+
+    end
+  end
+
   describe '.from_omniauth' do
     let(:auth) do
       OpenStruct.new(

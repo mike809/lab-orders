@@ -5,6 +5,8 @@ class Order < ApplicationRecord
 
   validate :teacher_has_correct_role, :student_has_correct_role, :patient_has_correct_role
 
+  scope :with_pending_balance, -> { where('balance > 0') }
+
   def barcode
     @barcode ||= Barcoder.new(id).to_html
   end
