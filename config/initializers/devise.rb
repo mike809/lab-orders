@@ -6,7 +6,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
   config.expire_all_remember_me_on_sign_out = true
   config.sign_out_via = :delete
-
+  config.http_authenticatable_on_xhr = false
   config.parent_controller = 'ActionController::Base'
   config.omniauth :azure_oauth2,
                   client_id: ENV['AZURE_CLIENT_ID'],

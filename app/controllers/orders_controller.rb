@@ -1,6 +1,4 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
-
   def index
     @order_presenters = Order.all.map { |order| OrderPresenter.new(order, view_context) }
   end
