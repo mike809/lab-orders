@@ -1,5 +1,5 @@
 |
-  $('#user-creation-form').html("#{j render partial: 'form'}")
+  $('#user-creation-form').html("#{j render partial: 'new_form', locals: { object: @user}}")
   $('#user-creation-modal').on('shown.bs.modal', () => {
 	  $('input#fullname').focus();
   }).modal('show');

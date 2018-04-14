@@ -1,0 +1,21 @@
+col-12
+  .row
+    .table-responsive
+      table.table.table-striped
+        thead
+          tr
+            th Nombre completo
+            th Nombre de usuario
+            th Correo electronico
+            - if smart_listing.name == :users_with_orders
+              th Tipo de usuario
+              th = smart_listing.sortable 'Balance Pendiente', :pending_balance
+            - else
+              th = smart_listing.sortable 'Tipo de usuario', :role
+
+        tbody
+          - smart_listing.collection.each do |user|
+            tr.editable data-id="#{user.id}"
+              = smart_listing.render object: user, partial: "admin/users/user", locals: { object: user }
+
+= smart_listing.paginate

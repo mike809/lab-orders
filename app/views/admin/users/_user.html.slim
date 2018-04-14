@@ -1,0 +1,20 @@
+td = user.full_name
+td = user.username
+td = user.email
+td = I18n.t("activerecord.enums.user.user_roles.#{user.role}")
+- if smart_listing.name == :users_with_orders
+  td = user.pending_balance
+
+td.actions
+  = smart_listing_item_actions [{ \
+    name: :edit,
+    remote: true,
+    url: edit_admin_user_path(object) \
+  },
+  { \
+    name:   :custom,
+    url:  '',
+    method: :put,
+    icon: 'far fa-credit-card mx-1', remote: true,
+    if: (object.pending_balance > 0), title: 'Aplicar nuevo pago' \
+  }]

@@ -1,0 +1,6 @@
+td colspan='6'
+  = bootstrap_form_for [:admin, object], remote: true do |form|
+    = render 'form_fields', object: object, form: form
+    .actions
+      = form.submit 'Actualizar usuario', class: 'btn btn-primary'
+      button.btn.btn-link.cancel data-dismiss='modal' Cancelar
