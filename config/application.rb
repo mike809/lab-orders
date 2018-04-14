@@ -22,6 +22,11 @@ module Isc434
 
     config.load_defaults 5.1
 
+    config.i18n.available_locales = [:es, :en]
+    config.i18n.fallbacks = true
+    config.i18n.fallbacks = [:en]
+    config.i18n.default_locale = :es
+
     config.session_store :cookie_store, key: '_interslice_session'
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore, config.session_options
