@@ -32,7 +32,9 @@ gem 'pg', '~> 0.18'
 gem 'pundit'
 gem 'slim-rails'
 gem 'barby'
-gem "browserify-rails"
+gem 'browserify-rails'
+gem 'smart_listing'
+gem 'font-awesome-rails'
 group :development do
   gem 'guard-bundler'
   gem 'guard-rails'
