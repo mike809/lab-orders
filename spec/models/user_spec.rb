@@ -33,6 +33,27 @@ describe User do
     end
   end
 
+  describe 'scopes' do
+    let!(:user_with_orders) { FactoryBot.create(:student, :with_order) }
+    let!(:user_without_orders) { FactoryBot.create(:student) }
+
+    describe '.with_orders' do
+      subject { User.with_orders }
+
+      it 'returns users with orders' do
+        expect(subject).to eq([user_with_orders])
+      end
+    end
+
+    describe '.without_orders' do
+      subject { User.without_orders }
+
+      it 'returns users without orders' do
+        expect(subject).to eq(User.all - [user_with_orders])
+      end
+    end
+  end
+
   describe '#pending_balance' do
     subject { FactoryBot.create(:student) }
 
@@ -65,7 +86,6 @@ describe User do
           expect(subject.pending_balance).to eq 1500
         end
       end
-
     end
   end
 

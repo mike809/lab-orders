@@ -6,6 +6,12 @@ FactoryBot.define do
 
     factory :student do
       role :student
+
+      trait :with_order do
+        after(:create) do |user|
+          create(:order, student: user)
+        end
+      end
     end
 
     factory :teacher do
