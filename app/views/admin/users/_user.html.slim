@@ -1,9 +1,9 @@
-td = user.full_name
-td = user.username
-td = user.email
-td = I18n.t("activerecord.enums.user.user_roles.#{user.role}")
-- if smart_listing.name == :users_with_orders
-  td = user.pending_balance
+td = object.full_name
+td = object.username
+td = object.email
+td = I18n.t("activerecord.enums.user.user_roles.#{object.role}")
+- if object.student_orders.present?
+  td = object.pending_balance
 
 td.actions
   = smart_listing_item_actions [{ \
