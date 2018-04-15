@@ -21,6 +21,9 @@ db/*.sqlite3
 /log/*
 /tmp/*
 
+# Node
+node_modules
+
 # add /config/database.yml if it contains passwords
 # /config/database.yml
 
