@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks:'callbacks' }
 
   namespace :admin do
-    resources :users, only: [:index, :new, :create]
+    resources :users, only: [:index, :new, :create, :edit, :update]
   end
 
   resources :orders, only: [:index, :new, :show, :create, :edit, :update]

@@ -1,20 +1,5 @@
-h2 Listado de usuarios
+h2.row.my-4 Estudiantes con balance pendiente
+== smart_listing_render(:users_with_orders)
 
-.col-12
-  .row
-    .table-responsive
-      table.table.table-bordered.table-striped
-        thead.thead-light
-          tr
-            th Nombre completo
-            th Nombre de usuario
-            th Correo electronico
-            th Tipo de usuario
-
-        tbody
-          - @users.each do |user|
-            tr
-              td = user.full_name
-              td = user.username
-              td = user.email
-              td = I18n.t("activerecord.enums.user.user_roles.#{user.role}")
+h2.row.my-4 Otros usuarios
+== smart_listing_render(:users_without_orders)

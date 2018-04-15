@@ -1,0 +1,11 @@
+- if object.errors.any?
+  #error_explanation
+    h2 = "#{pluralize(object.errors.count, "error")} evitaron crear este usuario:"
+    ul
+      - object.errors.each do |_, message|
+        li = message
+.row
+  .col-6
+    = form.text_field :full_name, id: 'fullname'
+  .col-6
+    = form.select :role, options_for_user_roles_select

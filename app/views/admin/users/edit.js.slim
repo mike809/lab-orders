@@ -1,0 +1,2 @@
+- listing_name = @user.student_orders.present? ? :users_with_orders : :users_without_orders
+= smart_listing_item listing_name, :edit, @user, 'admin/users/edit_form'

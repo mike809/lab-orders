@@ -5,12 +5,17 @@
 */
 
 @import 'bootstrap';
+@import "font-awesome";
 
 html, body, body > .container {
   height: 100%;
 }
 
-table {
+table.table {
+  th {
+    border: none;
+  }
+
   &.table-hover {
     tr[data-href]:hover {
       background: #79BAFF;
@@ -40,4 +45,9 @@ table {
       overflow: visible;
     }
   }
+}
+
+.alert-alert {
+  @extend .alert-warning;
+  text-align: center;
 }
