@@ -1,6 +1,9 @@
 class AdminsController < ApplicationController
   before_action :admin_only
 
+  skip_after_action :verify_authorized
+  skip_after_action :verify_policy_scoped
+
   private
 
   def admin_only

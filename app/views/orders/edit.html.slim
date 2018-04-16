@@ -1,10 +1,10 @@
 h1 Orden
 
-= bootstrap_form_for @order do |form|
-  == render 'form_fields', form: form, order: @order, disabled: true
+= bootstrap_form_for @order_presenter do |form|
+  == render 'form_fields', form: form, order: @order_presenter, disabled: true
   .col
     .row.my-3
       .mr-1
         = button_to 'Recibir orden', { action: :update }, class: 'btn btn-primary', method: :put
       .mr-1
-        = link_to 'Imprimir hoja de orden', order_url(@order), class: 'btn btn-primary'
+        = link_to 'Imprimir hoja de orden', order_url(@order_presenter), class: 'btn btn-primary'
