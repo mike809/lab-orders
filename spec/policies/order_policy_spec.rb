@@ -53,6 +53,7 @@ RSpec.describe OrderPolicy do
     end
 
     it { is_expected.not_to authorize(:update) }
+    it { is_expected.not_to authorize(:edit) }
 
     it { is_expected.to authorize(:index) }
     it { is_expected.to authorize(:new) }
@@ -66,6 +67,7 @@ RSpec.describe OrderPolicy do
     it { is_expected.to authorize(:create) }
 
     it { is_expected.not_to authorize(:update) }
+    it { is_expected.not_to authorize(:edit) }
   end
 
   context 'as an admin' do
@@ -74,6 +76,7 @@ RSpec.describe OrderPolicy do
     it { is_expected.to authorize(:new) }
     it { is_expected.to authorize(:index) }
     it { is_expected.to authorize(:create) }
+    it { is_expected.to authorize(:edit) }
     it { is_expected.to authorize(:update) }
   end
 end

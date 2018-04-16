@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(permitted_attributes(Order))
+    @order = Order.new(new_order_params.merge(permitted_attributes(Order)))
     authorize @order
     if @order.save
       redirect_to order_url(@order)
@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
   private
 
   def new_order_params
-    return unless %i[student].include?(current_user.role.to_sym)
-    { "#{current_user.role}_id" => current_user }
+    return {} unless %i[student].include?(current_user.role.to_sym)
+    { "#{current_user.role}_id" => current_user.id }
   end
 end
