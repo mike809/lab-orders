@@ -25,7 +25,10 @@ class User < ApplicationRecord
       .where(orders: { student_id: nil })
   }
 
-  before_validation :set_generated_username, unless: ->(user) { user.username.present? }
+  before_validation :set_generated_username, if: lambda {
+    username.nil? && full_name.present?
+  }
+
   before_validation :set_generated_email, unless: ->(user) { user.email.present? }
 
   validates :full_name, presence: true

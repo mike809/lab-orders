@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :user do
     full_name { Faker::Name.name }
-    username { UniqueUsernameGenerator.for_user(self) }
-    email { "#{self.username}@estomatologia.pucmm.edu.do" }
+    username { UniqueUsernameGenerator.for_user(self) if full_name.present? }
+    email { "#{username}@estomatologia.pucmm.edu.do" }
 
     factory :student do
       role :student
@@ -22,7 +22,7 @@ FactoryBot.define do
       role :patient
     end
 
-    factory :administrator do
+    factory :administrator, aliases: [:admin] do
       role :administrator
     end
   end

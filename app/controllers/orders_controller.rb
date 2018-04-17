@@ -1,19 +1,26 @@
 class OrdersController < ApplicationController
   def index
-    @order_presenters = Order.all.map { |order| OrderPresenter.new(order, view_context) }
+    authorize Order
+    @orders = policy_scope(Order)
+    @order_presenters = @orders.map do |order|
+      OrderPresenter.new(order, view_context)
+    end
   end
 
   def new
-    @order = Order.new
+    authorize Order
+    @order = Order.new(new_order_params)
   end
 
   def show
     @order = Order.find(params[:id])
+    authorize @order
     render layout: 'receipt'
   end
 
   def create
-    @order = Order.new(order_params)
+    @order = Order.new(new_order_params.merge(permitted_attributes(Order)))
+    authorize @order
     if @order.save
       redirect_to order_url(@order)
     else
@@ -22,11 +29,15 @@ class OrdersController < ApplicationController
   end
 
   def edit
-    @order = OrderPresenter.new(Order.find(params[:id]), view_context)
+    @order = Order.find(params[:id])
+    authorize @order
+    @order_presenter = OrderPresenter.new(@order, view_context)
   end
 
   def update
     @order = Order.find(params[:id])
+    authorize @order
+    @order_presenter = OrderPresenter.new(@order, view_context)
     @order.transaction do
       @order.transition!
       flash.now[:info] = 'Orden Recibida'
@@ -37,7 +48,8 @@ class OrdersController < ApplicationController
 
   private
 
-  def order_params
-    params.require(:order).permit(:student_id, :teacher_id, :patient_id, :balance)
+  def new_order_params
+    return {} unless %i[student].include?(current_user.role.to_sym)
+    { "#{current_user.role}_id" => current_user.id }
   end
 end
