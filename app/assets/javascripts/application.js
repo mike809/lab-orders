@@ -11,10 +11,5 @@
 import QuaggaHandler from 'quagga_handler'
 
 $(document).on('turbolinks:load', () => {
-  $('tr[data-href]').click((event) => {
-    var url = $(event.currentTarget).data('href');
-    Turbolinks.visit(url);
-  });
-
   new QuaggaHandler();
 });

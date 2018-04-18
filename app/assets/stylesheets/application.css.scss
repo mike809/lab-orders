@@ -15,12 +15,6 @@ table.table {
   th {
     border: none;
   }
-
-  &.table-hover {
-    tr[data-href]:hover {
-      background: #79BAFF;
-    }
-  }
 }
 
 .navbar {

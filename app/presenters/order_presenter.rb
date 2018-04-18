@@ -6,7 +6,7 @@ class OrderPresenter < SimpleDelegator
     super(model)
   end
 
-  def balance
-    view.number_to_currency(super, unit: 'RD$')
+  def order_balance
+    view.number_to_currency(balance, unit: 'RD$')
   end
 end

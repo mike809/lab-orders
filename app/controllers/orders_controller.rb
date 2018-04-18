@@ -1,10 +1,19 @@
 class OrdersController < ApplicationController
+  include SmartListing::Helper::ControllerExtensions
+  helper  SmartListing::Helper
+
   def index
     authorize Order
     @orders = policy_scope(Order)
     @order_presenters = @orders.map do |order|
       OrderPresenter.new(order, view_context)
     end
+
+    @order_presenters = smart_listing_create :orders,
+                         @order_presenters,
+                         partial: 'orders/listing',
+                         array: true,
+                         default_sort: { 'balance' => 'desc' }
   end
 
   def new
