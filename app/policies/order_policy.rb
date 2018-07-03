@@ -19,15 +19,24 @@ class OrderPolicy < ApplicationPolicy
   end
 
   def update?
-    user.admin?
+    user.admin? || user.student?
   end
 
   def permitted_attributes_for_create
     case user_role
     when :student
-      %i[teacher_id patient_id balance]
+      %i[student_id teacher_id patient_id balance]
     when :administrator, :teacher
       %i[student_id teacher_id patient_id balance]
+    end
+  end
+
+  def permitted_attributes_for_update
+    case user_role
+    when :student
+      %i[teacher_id]
+    when :administrator
+      %i[teacher_id balance]
     end
   end
 

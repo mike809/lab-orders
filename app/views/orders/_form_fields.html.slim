@@ -1,4 +1,4 @@
-- if order.errors.any?
+- if form.object.errors.any?
   #error_explanation
     h2 = "#{pluralize(form.object.errors.count, "error")} prohibited this order from being saved:"
     ul

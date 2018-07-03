@@ -52,8 +52,8 @@ RSpec.describe OrderPolicy do
       end
     end
 
-    it { is_expected.not_to authorize(:update) }
-    it { is_expected.not_to authorize(:edit) }
+    it { is_expected.to authorize(:update) }
+    it { is_expected.to authorize(:edit) }
 
     it { is_expected.to authorize(:index) }
     it { is_expected.to authorize(:new) }

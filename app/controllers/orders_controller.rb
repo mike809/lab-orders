@@ -4,16 +4,11 @@ class OrdersController < ApplicationController
 
   def index
     authorize Order
-    @orders = policy_scope(Order)
-    @order_presenters = @orders.map do |order|
-      OrderPresenter.new(order, view_context)
-    end
-
-    @order_presenters = smart_listing_create :orders,
-                         @order_presenters,
-                         partial: 'orders/listing',
-                         array: true,
-                         default_sort: { 'balance' => 'desc' }
+    @orders = smart_listing_create :orders,
+                                   policy_scope(Order),
+                                   partial: 'orders/listing',
+                                   array: true,
+                                   default_sort: { 'balance' => 'desc' }
   end
 
   def new
@@ -40,19 +35,20 @@ class OrdersController < ApplicationController
   def edit
     @order = Order.find(params[:id])
     authorize @order
-    @order_presenter = OrderPresenter.new(@order, view_context)
   end
 
   def update
     @order = Order.find(params[:id])
     authorize @order
-    @order_presenter = OrderPresenter.new(@order, view_context)
     @order.transaction do
       @order.transition!
       flash.now[:info] = 'Orden Recibida'
     end
 
-    render :edit
+    respond_to do |format|
+      format.html { render :edit }
+      format.js
+    end
   end
 
   private

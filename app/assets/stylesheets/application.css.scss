@@ -41,6 +41,10 @@ table.table {
   }
 }
 
+.hidden {
+  @extend .d-none;
+}
+
 .alert-alert {
   @extend .alert-warning;
   text-align: center;

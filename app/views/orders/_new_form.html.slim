@@ -1,0 +1,6 @@
+td colspan='6'
+  = bootstrap_form_for @order, remote: true do |form|
+    == render 'form_fields', form: form, order: @order, disabled: false
+    .actions
+      = form.submit 'Crear orden', class: 'btn btn-primary'
+      button.btn.btn-link.cancel data-dismiss='modal' Cancelar

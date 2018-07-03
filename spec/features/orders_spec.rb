@@ -29,7 +29,7 @@ RSpec.feature "Orders", js: true do
         visit orders_path
 
         within('table tbody') do
-          expect(page).to have_css('tr', count: 1)
+          expect(page).to have_css('tr.editable', count: 1)
         end
 
         click_on('Nueva Orden')
@@ -93,7 +93,7 @@ RSpec.feature "Orders", js: true do
         expect(page.current_path).to eq order_path(Order.last)
         visit orders_path
 
-        within('table tbody tr') do
+        within('table tbody tr.editable') do
           expect(page).not_to have_content(other_student.full_name)
           expect(page).to have_content('2 Patient Pucmm Teacher Pucmm Student Pucmm RD$5,550.00')
         end

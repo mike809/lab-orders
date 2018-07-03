@@ -56,7 +56,7 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 plugin :tmp_restart
 
 if ENV.fetch('SSL', nil) && ENV.fetch('RAILS_ENV', nil) == 'development'
-  ssl_bind '127.0.0.1', '4000',
+  ssl_bind '10.0.0.8', '4000',
     key: Rails.root.join('ssl', 'server.key'),
     cert: Rails.root.join('ssl', 'server.crt'),
     verify_mode: 'none'

@@ -1,0 +1,16 @@
+td = order.id
+td = order.patient.full_name
+td = order.teacher.full_name
+td = order.student.full_name
+td = number_to_currency(order.balance, unit: 'RD$')
+td.actions
+  = smart_listing_item_actions [{ \
+    name: :edit,
+    remote: true,
+    url: edit_order_path(object) \
+  },
+  { \
+    name: :show,
+    remote: true,
+    url: order_path(object) \
+  }]

@@ -1,4 +1,4 @@
-.my-2 = link_to 'Nueva Orden', new_order_path, class: 'btn btn-primary'
+.my-2 = link_to 'Nueva Orden', new_order_path, class: 'btn btn-primary', remote: true
 .col-12
   .row
     .table-responsive
@@ -10,14 +10,12 @@
             th Docente
             th Estudiante
             th = smart_listing.sortable 'Balance Pendiente', :balance
+            th Acciones
 
         tbody
-          - smart_listing.collection.each do |order_presenter|
-            tr
-              td = order_presenter.id
-              td = order_presenter.patient.full_name
-              td = order_presenter.teacher.full_name
-              td = order_presenter.student.full_name
-              td = order_presenter.order_balance
+          = smart_listing.item_new colspan: 6, link: new_order_path
+          - smart_listing.collection.each do |order|
+            tr.editable data-id="#{order.id}"
+              = smart_listing.render object: order, partial: 'order', locals: { object: order }
 
 = smart_listing.paginate
